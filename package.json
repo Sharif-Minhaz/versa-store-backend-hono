@@ -1,0 +1,17 @@
+{
+  "name": "versa-store-backend-hono",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  },
+  "dependencies": {
+    "@arcjet/bun": "^1.0.0-alpha.34",
+    "@hono/zod-validator": "^0.4.2",
+    "cloudinary": "^2.5.1",
+    "hono": "^4.6.14",
+    "mongoose": "^8.9.2",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
