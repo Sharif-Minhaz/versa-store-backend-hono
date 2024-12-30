@@ -16,22 +16,24 @@ const getAllCategories = async (ctx: Context) => {
 };
 
 const addCategory = async (ctx: Context) => {
+	const imageFile: File = ctx.get("image");
 	const { name } = await ctx.req.parseBody({ dot: true });
-	const imageFile = ctx.get("categoryPhoto");
+
+	console.log(name, imageFile);
 
 	// check if the category already exist
 	const isCategoryExist = await Category.exists({
 		name: { $regex: new RegExp("^" + name + "$", "i") },
 	});
 
-	if (isCategoryExist) throwError("Category already exist", 409);
+	if (isCategoryExist) return throwError("Category already exist", 409);
 
-	if (!imageFile) throwError("Category image is required", 400);
+	if (!imageFile) return throwError("Category image is required", 400);
 
 	// upload category image
 	const uploadImg = await uploadImageHandler(imageFile);
 
-	if (!uploadImg) throwError("Error uploading image");
+	if (!uploadImg) return throwError("Error uploading image");
 
 	// create the category
 	const category = await Category.create({

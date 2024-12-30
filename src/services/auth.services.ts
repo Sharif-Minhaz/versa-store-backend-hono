@@ -81,7 +81,6 @@ const customerRegistration = async (body: any) => {
 
 const vendorRegistration = async (body: any, file: File) => {
 	const { email, fullName, password, shopName, shopLicenseNo, shopType, shopAddress } = body;
-	console.log(email, fullName, password, shopName, file, shopLicenseNo, shopType, shopAddress);
 
 	const { customer, vendor, admin } = await checkIfUserExists(email);
 

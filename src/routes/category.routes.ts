@@ -13,7 +13,7 @@ router.post(
 	"/",
 	catchAsync(checkAuth),
 	catchAsync(checkAdminVendor),
-	catchAsync(upload("categoryPhoto")),
+	catchAsync(upload("image")),
 	zValidator("form", validateCategory),
 	catchAsync(CategoryControllers.addCategory)
 );

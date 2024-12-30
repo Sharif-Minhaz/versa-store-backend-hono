@@ -7,7 +7,7 @@ const aj = arcjet({
 	characteristics: ["ip.src"], // Track requests by IP
 	rules: [
 		// Shield protects your app from common attacks e.g. SQL injection
-		shield({ mode: "LIVE" }),
+		shield({ mode: "DRY_RUN" }),
 		// Create a bot detection rule
 		detectBot({
 			mode: "LIVE", // Blocks requests. Use "DRY_RUN" to log only
@@ -37,7 +37,7 @@ export default async function useArcjet(ctx: Context, next: Next) {
 		} else if (decision.reason.isBot()) {
 			return ctx.json({ success: false, message: "No bots allowed, Go away" }, 403);
 		} else {
-			return ctx.json({ success: false, message: "Forbidden" }, 403);
+			return ctx.json({ success: false, message: "Forbidden, Go away" }, 403);
 		}
 	}
 
