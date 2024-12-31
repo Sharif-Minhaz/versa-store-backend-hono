@@ -1,9 +1,6 @@
 import cloudinary from "./cloudinaryInit";
 import { Readable } from "stream";
 
-interface IFile extends File {
-	path: string;
-}
 async function uploadImageHandler(
 	file: File,
 	destination = "versaShopHono"
@@ -36,7 +33,7 @@ async function uploadImageHandler(
 	});
 }
 
-const uploadImages = async (files: IFile[]) => {
+const uploadImages = async (files: File[]) => {
 	return await Promise.all(
 		files.map((file) => {
 			const uploadResult = uploadImageHandler(file);

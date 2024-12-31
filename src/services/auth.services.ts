@@ -123,12 +123,12 @@ const customerUpdate = async (ctx: Context) => {
 	const body = await ctx.req.parseBody({ dot: true });
 	const userId = ctx.get("user")?._id;
 	const file = ctx.get("image");
-	if (!userId) throwError("User id required", 400);
+	if (!userId) return throwError("User id required", 400);
 
 	const customer = await Customer.findById(userId);
 
-	if (!customer) throwError("Customer not found", 404);
-	if (customer.isBan) throwError(BANNED_MESSAGE, 401);
+	if (!customer) return throwError("Customer not found", 404);
+	if (customer.isBan) return throwError(BANNED_MESSAGE, 401);
 
 	let photoUpload = null;
 	// upload the photo into cloudinary, if there any
@@ -159,12 +159,13 @@ const vendorUpdate = async (ctx: Context) => {
 	const file = ctx.get("image");
 	const shopPhotos = ctx.get("shopPhotos");
 	const userId = ctx.get("user")?._id;
-	if (!userId) throwError("User id required", 400);
+
+	if (!userId) return throwError("User id required", 400);
 
 	const vendor = await Vendor.findById(userId);
 
-	if (!vendor) throwError("Vendor not found", 404);
-	if (vendor.isBan) throwError(BANNED_MESSAGE, 401);
+	if (!vendor) return throwError("Vendor not found", 404);
+	if (vendor.isBan) return throwError(BANNED_MESSAGE, 401);
 
 	let photoUpload = null,
 		shopPhotoUpload = null;

@@ -53,3 +53,9 @@ export const getNewTokens = async (user: ITokenPayloadUser) => {
 
 	return { accessToken, refreshToken };
 };
+
+export const capitalize = (str: string) => {
+	const words = str.toLowerCase();
+	const capitalizedWords = words.replace(words.charAt(0), words.charAt(0).toUpperCase());
+	return capitalizedWords;
+};

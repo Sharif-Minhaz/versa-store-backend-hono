@@ -11,8 +11,8 @@ const uploadAll = async (ctx: Context, next: Next) => {
 	}
 
 	const formData = await ctx.req.formData();
-	const file = formData.get("shopPhoto");
-	const file2 = formData.get("image");
+	const file = formData.get(fieldName);
+	const file2 = formData.get(fieldName2);
 
 	// Validate file type
 	const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/webp", "image/svg+xml"];

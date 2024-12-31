@@ -153,7 +153,7 @@ const refreshToken = async (ctx: Context) => {
 const updateUser = async (ctx: Context) => {
 	const updateFor = ctx.get("user")?.user_type;
 
-	if (!updateFor) throwError("Got no user information", 500);
+	if (!updateFor) return throwError("Got no user type information", 500);
 
 	let user = null;
 	// registration based on role
@@ -169,8 +169,8 @@ const updateUser = async (ctx: Context) => {
 		user = await AuthServices.adminUpdate(ctx);
 	}
 
-	if (!user) throwError("Error registering user");
-	if (user.isBan) throwError(BANNED_MESSAGE, 401);
+	if (!user) return throwError("Error registering user");
+	if (user.isBan) return throwError(BANNED_MESSAGE, 401);
 
 	return ctx.json(
 		{
@@ -185,7 +185,7 @@ const getProfile = async (ctx: Context) => {
 	const updateFor = ctx.get("user")?.user_type;
 	const userId = ctx.get("user")?._id;
 
-	if (!updateFor || !userId) throwError("Got no user information", 500);
+	if (!updateFor || !userId) return throwError("Got no user information", 500);
 
 	let user = null;
 	// registration based on role

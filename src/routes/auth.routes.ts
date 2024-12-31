@@ -28,7 +28,7 @@ router.post("/google", catchAsync(checkGuest), catchAsync(AuthControllers.contin
 router.patch(
 	"/update",
 	catchAsync(checkAuth),
-	catchAsync(upload("shopPhoto")),
+	catchAsync(uploadAll),
 	catchAsync(AuthControllers.updateUser)
 );
 

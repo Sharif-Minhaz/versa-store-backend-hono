@@ -19,8 +19,6 @@ const addCategory = async (ctx: Context) => {
 	const imageFile: File = ctx.get("image");
 	const { name } = await ctx.req.parseBody({ dot: true });
 
-	console.log(name, imageFile);
-
 	// check if the category already exist
 	const isCategoryExist = await Category.exists({
 		name: { $regex: new RegExp("^" + name + "$", "i") },

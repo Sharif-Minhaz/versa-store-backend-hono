@@ -3,6 +3,10 @@ import { secrets } from "./configs";
 import { useMiddlewares } from "./middlewares";
 import authRoute from "./routes/auth.routes";
 import categoryRoute from "./routes/category.routes";
+import productRoute from "./routes/product.routes";
+import orderRoute from "./routes/order.routes";
+import paymentRoute from "./routes/payment.routes";
+import reviewRoute from "./routes/review.routes";
 import connectDB from "./db";
 
 connectDB();
@@ -15,6 +19,10 @@ app.use(...useMiddlewares());
 // auth route
 apiRoute.route("/auth", authRoute);
 apiRoute.route("/categories", categoryRoute);
+apiRoute.route("/products", productRoute);
+apiRoute.route("/review", reviewRoute);
+apiRoute.route("/order", orderRoute);
+apiRoute.route("/payment", paymentRoute);
 
 // base route
 app.route("/api/v1", apiRoute);
