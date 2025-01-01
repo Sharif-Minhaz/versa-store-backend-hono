@@ -1,4 +1,4 @@
-import cloudinary from "../utils/cloudinaryInit";
+import cloudinary from "./cloudinaryInit";
 import { throwError } from ".";
 
 export const deleteImage = async (public_id: string) => {

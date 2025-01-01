@@ -1,3 +1,5 @@
+// FIXME: not going to work in the bun.js runtime, need to be shifted to a node.js runtime or environment
+
 import { Context } from "hono";
 
 import SSLCommerzPayment from "sslcommerz-lts";
@@ -64,7 +66,7 @@ const initSSL_Commerz = async (ctx: Context) => {
 			return ctx.json({ url: data.GatewayPageURL }, 200);
 		}
 
-		ctx.json({ success: false, message: "Session was not successful" }, 400);
+		return ctx.json({ success: false, message: "Session was not successful" }, 400);
 	});
 };
 
